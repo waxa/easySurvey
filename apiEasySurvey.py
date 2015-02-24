@@ -21,7 +21,7 @@ class guardarId:
 		fich = open (fname, "w")
 		aux = json.loads(web.data())
 		print aux
-		fich.write(web.data())
+		fich.write(json.dumps(aux))
 
 class basura:
 	def GET(self, basura):
