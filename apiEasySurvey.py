@@ -23,15 +23,15 @@ class guardarId:
 	def POST(self):
 		fich = open (fname, "w")
 		aux = json.loads(web.data())
-		print aux
-		print "intento de"
-		print aux["registrationId"]
 		fich.write(json.dumps(aux))
 
+		print aux
+
 		data = { "registration_ids" : [str(aux["registrationId"])],
-			 "data" : { "mensaje" :"desde aki mando"}}
+			 "data" : { "mensaje" : str(aux["mensaje"])}}
 
 		print "enviando peticion"
+
 		r = requests.post(claves.url, data = json.dumps(data), headers = claves.headers)
 
 		print r
