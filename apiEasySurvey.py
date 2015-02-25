@@ -6,8 +6,12 @@ reload(sys)
 sys.setdefaultencoding("utf8")
 import web
 import json
+import requests
+import urllib
+import urllib2
+import time
 
-fname = "movilId.txt"
+fname = "movilId2.txt"
 
 urls = (
 	'/guardarId/', 'guardarId',
@@ -21,7 +25,25 @@ class guardarId:
 		fich = open (fname, "w")
 		aux = json.loads(web.data())
 		print aux
+		print "intento de"
+		print aux["registrationId"]
 		fich.write(json.dumps(aux))
+
+		time.sleep(10)
+		
+		headers = {"Authorization": "key=AIzaSyBSFHnJV7Q35CnsHcybhpQLSH6clyrltJE", "Content-Type" : "application/json", "Accept-Encoding" : "application/json" }
+
+		data = { "registration_ids" : [str(aux["registrationId"])],
+			 "data" : { "mensaje" :"desde aki mando"}}
+
+		url = "https://android.googleapis.com/gcm/send"
+
+		print "enviando peticion"
+		r = requests.post(url, data = json.dumps(data), headers = headers)
+
+		print r
+
+
 
 class basura:
 	def GET(self, basura):
