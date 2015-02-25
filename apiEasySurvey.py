@@ -6,12 +6,9 @@ reload(sys)
 sys.setdefaultencoding("utf8")
 import web
 import json
-import requests
-import urllib
-import urllib2
 import time
 
-fname = "movilId2.txt"
+fname = "movilId.txt"
 
 urls = (
 	'/guardarId/', 'guardarId',
@@ -29,7 +26,7 @@ class guardarId:
 		print aux["registrationId"]
 		fich.write(json.dumps(aux))
 
-		time.sleep(10)
+		#time.sleep(10)
 		
 		headers = {"Authorization": "key=AIzaSyBSFHnJV7Q35CnsHcybhpQLSH6clyrltJE", "Content-Type" : "application/json", "Accept-Encoding" : "application/json" }
 
